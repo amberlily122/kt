@@ -37,37 +37,5 @@ template<typename..._Ts>
     ((msg.append(kt::to_string(std::forward<_Ts>(_vars)))), ...);
     return msg;
   }
-template<typename T>
-struct is_valarray : std::false_type {};
-
-template<typename T>
-struct is_valarray<std::valarray<T>> : std::true_type {};
-
-template<typename _T> constexpr auto is_valarray_v = is_valarray<_T>::value;
-
-template<typename _T, typename..._U>
-  auto concat_arr(const _T& _arr, auto&& _delim)
-  {
-    auto result = std::string {};
-    auto iter = std::begin(_arr);
-    const auto end_iter  = std::end(_arr);
-    if(iter == end_iter) 
-      { return result; }
-    else if(_arr.size() == 1) 
-      { return result += _arr[0]; }
-    else if(_arr.size() == 2)
-      { return kt::concat(_arr[0], " or ", _arr[1]); }
-    else
-    {
-      while(iter != end_iter)
-      {
-        result += *iter;
-        ++iter;
-        if(iter != end_iter) result += _delim;
-        if(iter + 1 == end_iter) { result += "or "; };
-      }
-    }
-    return result;
-  }
 } /* namespace kt */
 #endif//concat_hpp_20230109_073634_PST
