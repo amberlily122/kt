@@ -6,12 +6,12 @@
 namespace kt {
 /* \brief Convert a string to a string; this function exists for overloading purposes.
 */
-auto to_string(const std::string& _src) -> std::string { return _src; }
+inline auto to_string(const std::string& _src) -> std::string { return _src; }
 /* \brief Convert a string_view to a string; this function exists for overloading purposes.
 */
-auto to_string(std::string_view _src)   -> std::string { return std::string(_src); }
+inline auto to_string(std::string_view _src)   -> std::string { return std::string(_src); }
 /* \brief Convert a c-string to a string; this function exists for overloading purposes. */
-auto to_string(const char* _src)        -> std::string { return _src; }
+inline auto to_string(const char* _src)        -> std::string { return _src; }
 /* \brief Convert a variable of type `_T` to a string as if it were sent to the 
           formatted output operator of a std::stringstream object.
 */
